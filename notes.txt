@@ -1,0 +1,14 @@
+==> Authentication
+    ==> login
+    ==> register
+    ==> Logout (Token black listing)
+
+==> post 
+    ==> Create post
+    ==> Can see the post
+    ==> Like post ()
+    ==> save post
+
+==> users
+    ==> following
+    ==> followers
