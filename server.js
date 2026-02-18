@@ -1,6 +1,8 @@
-const express = require('express')
+const app = require("./src/app")
+const db = require("./src/config/database")
+db()
 
-const app = express()
 
-
-module.exports = app
+app.listen(3000, () => {
+    console.log("Running on port 3000")
+})
