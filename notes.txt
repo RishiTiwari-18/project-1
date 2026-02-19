@@ -1,6 +1,6 @@
 ==> Authentication
+    ==> register ( 1. user Create krna, 2. token generate krna )
     ==> login
-    ==> register
     ==> Logout (Token black listing)
 
 ==> post 
