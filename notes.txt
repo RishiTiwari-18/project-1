@@ -12,3 +12,7 @@
 ==> users
     ==> following
     ==> followers
+
+
+    aap kabhi bhi route file ke andar logic nhi likhte wo logi jaate ahi controller folder mai
+    
