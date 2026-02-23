@@ -16,3 +16,12 @@
 
     aap kabhi bhi route file ke andar logic nhi likhte wo logi jaate ahi controller folder mai
     
+    express by default files read nhi kr skta so user read krne ke liyaa multer ka user krte hai
+
+    //todo: read teh complete multer and image kit docs
+
+
+    webp for image and webm for video
+
+
+    multer aur image kit ek br revise kr lena laala

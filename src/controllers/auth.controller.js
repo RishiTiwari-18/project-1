@@ -61,12 +61,12 @@ const loginController = async (req, res) => {
             })
         }
 
-        const checkPassword = await bcrypt.compare(password, user.password)
+        const checkPassword = await bcrypt.compare(password, user.password) 
 
         if(!checkPassword){
             return res.status(401).json({
                 success: false,
-                messsage: "Password Invalid"
+                message: "Password Invalid"
             })
         }
 
@@ -74,7 +74,7 @@ const loginController = async (req, res) => {
         res.cookie("token", token)
 
         res.status(200).json({
-            succes: true,
+            success: true,
             message: "User logged in",
             data: {
                 username: user.username,

@@ -15,3 +15,6 @@ module.exports = authRouter
 // 2. we check if the user exist or not if not the we return  user not found
 // 3. if user exist we check the password is password is wrong we send error else login
 // 4. Create tooken   
+
+
+// monolith folder structure  microservices folder structure
