@@ -14,7 +14,13 @@
     ==> followers
 
 
-    aap kabhi bhi route file ke andar logic nhi likhte wo logi jaate ahi controller folder mai
+    backend has nultiple layers of validation
+    1. express validator
+    2. controller
+    3. schema
+
+
+    aap kabhi bhi route file ke andar logic nhi likhte wo logi jaate hai controller folder mai
     
     express by default files read nhi kr skta so user read krne ke liyaa multer ka user krte hai
 
@@ -25,3 +31,17 @@
 
 
     multer aur image kit ek br revise kr lena laala
+
+
+    code kabhi yaad nhi hotaa understand the flow/methodology if kuch bhool gye to internet ka use kro
+    khud ka dimag lgao tb jyada grow kroge
+
+    ! jb theory code implementation sb ek saath pdha diya jay then - notes pdho chages dekho
+
+    storage sasti hoti hai as compared to read right speed 
+
+
+
+    ! book - designing data intensive application
+
+

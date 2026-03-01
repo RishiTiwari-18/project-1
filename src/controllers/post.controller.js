@@ -2,15 +2,16 @@
 const { toFile } = require('@imagekit/nodejs')
 const ImageKit = require('@imagekit/nodejs');
 const postModel = require('../models/post.model');
+const likeModel = require('../models/like.model');
 
 const imageKit = new ImageKit({
-  privateKey: process.env['IMAGEKIT_PRIVATE_KEY']
+    privateKey: process.env['IMAGEKIT_PRIVATE_KEY']
 });
 
 const createPostController = async (req, res) => {
     try {
-        const user = req.id
-        const { caption }= req.body
+        const user = req.user.id
+        const { caption } = req.body
         const file = await imageKit.files.upload({
             file: await toFile(Buffer.from(req.file.buffer), 'file'),
             fileName: 'test',
@@ -35,8 +36,8 @@ const createPostController = async (req, res) => {
 
 const getPostController = async (req, res) => {
     try {
-        const id = req.id
-        const post = await postModel.find({user: id})
+        const id = req.user.id
+        const post = await postModel.find({ user: id })
 
         res.status(200).json({
             success: false,
@@ -47,19 +48,19 @@ const getPostController = async (req, res) => {
             success: false,
             message: error.message
         })
-    }   
+    }
 }
 
 const getPostDetailController = async (req, res) => {
     try {
         const postId = req.params.id
-        const userId = req.id
-        
+        const userId = req.user.id
+
 
 
         const post = await postModel.findById(postId)
 
-        if(!post){
+        if (!post) {
             return res.status(400).json({
                 success: false,
                 message: "Post not found"
@@ -68,7 +69,7 @@ const getPostDetailController = async (req, res) => {
 
         const isAuthorized = post.user.toString() === userId
 
-        if(!isAuthorized){
+        if (!isAuthorized) {
             res.status(403).json({      //? Status 403 signals that access to a requested resource is intentionally denied, regardless of valid credentials.
                 success: false,
                 message: "Not allowed to access this post"
@@ -90,4 +91,47 @@ const getPostDetailController = async (req, res) => {
 
 }
 
-module.exports = { createPostController, getPostController, getPostDetailController }
+const likePostController = async (req, res) => {
+    try {
+        const user = req.user.id
+        const post = req.params.id
+
+        const isPostExist = await postModel.findById(post)
+
+        if(!isPostExist){
+            return res.status(404).json({
+                success: false,
+                message: "Post not found"
+            })
+        }
+
+        const isLikeAlreadyExist = await likeModel.findOne({post, user}) 
+
+        if(isLikeAlreadyExist){
+            return res.status(200).json({
+                success: false,
+                message: "You have already like this post"
+            })
+        }
+
+        const like = await likeModel.create({post, user})
+
+        return res.status(201).json({
+            success: true,
+            message: "You have liked the post",
+            data: like
+        })
+
+    } catch (error) {
+        res.status(400).json({
+            success: false,
+            message: error.message
+        })       
+    }
+}
+
+/**
+ * cehck if the psot exist
+ */
+
+module.exports = { createPostController, getPostController, getPostDetailController, likePostController }
